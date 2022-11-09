@@ -11,7 +11,9 @@ class QuotesSpider(scrapy.Spider):
         for quote in response.css('div.row'):
             yield {
                 'title': quote.css('a::text').get(),
-                'article': quote.css('p::text').get()
+                'news': quote.css('p::text').get(),
+                'director': quote.css('a ::text').get(),
+                'date': quote.css('<li class="date"><a href="#">30 ต.ค. 2565</a></li>::text').get(),
             }
 
         next_page = response.css('a./tags/honda-civic/3').attrib['href']
